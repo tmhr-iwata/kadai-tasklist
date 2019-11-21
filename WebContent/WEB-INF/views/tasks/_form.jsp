@@ -11,6 +11,10 @@
 <input type="datetime-local" name="limitday" value="${task.limitday}" />
 <br><br>
 
+<label for="completed"></label>
+<input type="hidden" name="completed" value="false" />
+
+
 <input type="hidden" name="_token" value="${_token}" />
-<input type="hidden" name="completed" value="${task.completed}" />
+
 <button type="submit">登録</button>

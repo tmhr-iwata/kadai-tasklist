@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Task;
-import utils.DButil;
+import utils.DBUtil;
 
 /**
  * Servlet implementation class CreateServlet
@@ -34,7 +34,7 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = (String)request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())){
-            EntityManager em = DButil.createEntityManager();
+            EntityManager em = DBUtil.createEntityManager();
 
             Task t = new Task();
 
@@ -48,7 +48,7 @@ public class CreateServlet extends HttpServlet {
             Timestamp limitday = Timestamp.valueOf(limitdayTemp.replace("T", " ") + ":00");
             t.setLimitday(limitday);
 
-            Boolean completed = false;
+            Boolean completed = Boolean.parseBoolean(request.getParameter("compleated"));
             t.setCompleted(completed);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());

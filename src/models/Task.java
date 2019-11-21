@@ -37,7 +37,7 @@ public class Task {
     private Timestamp limitday; // タスクの締め切り日
 
     @Column(name = "completed", nullable = false)
-    private Boolean completed = false; // 0で未了タスク、1で完了タスク
+    private Boolean completed; // 0で未了タスク、1で完了タスク
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
