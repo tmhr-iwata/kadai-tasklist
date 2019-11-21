@@ -7,11 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "task")
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllTasks",
+            query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
+            )
+})
+
 public class Task {
     @Id
     @Column(name = "id")
@@ -27,7 +36,7 @@ public class Task {
     @Column(name = "limitday", nullable = false)
     private Timestamp limitday; // タスクの締め切り日
 
-    @Column(name = "compleated", nullable = false)
+    @Column(name = "completed", nullable = false)
     private Integer completed; // 0で未了タスク、1で完了タスク
 
     @Column(name = "created_at", nullable = false)
