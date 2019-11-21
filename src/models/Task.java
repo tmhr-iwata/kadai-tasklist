@@ -33,7 +33,7 @@ public class Task {
     @Column(name = "content", length = 255, nullable = false)
     private String content; // タスク詳細
 
-    @Column(name = "limitday", nullable = false)
+    @Column(name = "limitday")
     private Timestamp limitday; // タスクの締め切り日
 
     @Column(name = "completed", nullable = false)

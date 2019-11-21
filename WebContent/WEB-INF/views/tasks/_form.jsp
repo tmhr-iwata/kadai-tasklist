@@ -8,7 +8,7 @@
 <br /><br />
 
 <label for="limitday">期日</label><br>
-<input type="date" name="limitday" value="${task.limitday}" />
+<input type="datetime-local" name="limitday" value="${task.limitday}" />
 <br><br>
 
 <input type="hidden" name="_token" value="${_token}" />
