@@ -40,6 +40,8 @@ public class IndexServlet extends HttpServlet {
 
         em.close();
 
+        // 日時のフォーマットを修正
+
         request.setAttribute("tasks", tasks);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
