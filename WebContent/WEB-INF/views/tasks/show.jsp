@@ -19,6 +19,8 @@
                <p>タスク完了</p>
            </c:otherwise>
         </c:choose>
+        <p><a href="<c:url value='/edit?id=${task.id}' /> ">編集</a></p>
+
         <p><a href="<c:url value='/index' /> ">一覧に戻る</a></p>
 
     </c:param>

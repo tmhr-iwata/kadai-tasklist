@@ -45,7 +45,9 @@ public class CreateServlet extends HttpServlet {
             t.setContent(content);
 
             String limitdayTemp = request.getParameter("limitday");
-            Timestamp limitday = Timestamp.valueOf(limitdayTemp.replace("T", " ") + ":00");
+            String limittimeTemp = request.getParameter("limitTime");
+            Timestamp limitday = Timestamp.valueOf(limitdayTemp + " " + limittimeTemp + ":00");
+            // Timestamp limitday = Timestamp.valueOf(limitdayTemp.replace("T", " ") + ":00");
             t.setLimitday(limitday);
 
             Boolean completed = Boolean.parseBoolean(request.getParameter("compleated"));

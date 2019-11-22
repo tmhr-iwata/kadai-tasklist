@@ -49,6 +49,7 @@ public class Task {
         return id;
     }
 
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -100,6 +101,5 @@ public class Task {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
-
 
 }
