@@ -14,12 +14,10 @@
         <br><br>
         <c:choose>
             <c:when test="${task.completed == false}">
-                <input type="radio" name="completed" value="false" checked="checked">未了
-                <input type="radio" name="completed" value="true">完了
+                <input type="checkbox" name="completed" value="true">完了
             </c:when>
             <c:otherwise>
-                <input type="radio" name="completed" value="false">未了
-                <input type="radio" name="completed" value="true" checked="checked">完了
+                <input type="checkbox" name="completed" value="true" checked="checked">完了
             </c:otherwise>
         </c:choose>
     </c:when>

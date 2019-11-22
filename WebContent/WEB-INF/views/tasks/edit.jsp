@@ -9,6 +9,16 @@
         </form>
 
         <p><a href="<c:url value="/index" /> ">一覧に戻る</a></p>
-
+        <p><a href="#" onclick="confirmDestroy">タスクの削除</a></p>
+        <form method="post" action="<c:url value="/destroy" />"  >
+            <input type="hidden" name="_token" value="${_token}" />
+        </form>
+        <script>
+        function confirmDestroy() {
+            if(confirm("本当に削除してよろしいですか？")){
+                document.forms[2].submit();
+            }
+        }
+        </script>
     </c:param>
 </c:import>
