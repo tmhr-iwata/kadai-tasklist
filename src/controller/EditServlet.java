@@ -43,8 +43,12 @@ public class EditServlet extends HttpServlet {
         // 期日データをHTMLの型にフォーマットする
         SimpleDateFormat sdfDay = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
-        String fmtedDay = sdfDay.format(t.getLimitday());
-        String fmtedTime = sdfTime.format(t.getLimitday());
+        String fmtedDay = null;
+        String fmtedTime = null;
+        if(t != null){
+            fmtedDay = sdfDay.format(t.getLimitday());
+            fmtedTime = sdfTime.format(t.getLimitday());
+        }
 
         // タスク情報とセッションIDをリクエストスコープに登録
         request.setAttribute("task", t);
@@ -52,8 +56,11 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("lmtDay", fmtedDay);
         request.setAttribute("lmtTime", fmtedTime);
 
+        // データが存在している場合のみ
         // タスクIDをセッションスコープに登録
-        request.getSession().setAttribute("task_id", t.getId());
+        if (t != null){
+            request.getSession().setAttribute("task_id", t.getId());
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
         rd.forward(request, response);
