@@ -53,8 +53,8 @@ public class UpdateServlet extends HttpServlet {
 
         String limitdayTemp = request.getParameter("limitday");
         String limittimeTemp = request.getParameter("limitTime");
-        Timestamp limitday = Timestamp.valueOf(limitdayTemp + " " + limittimeTemp + ":00");
-        // Timestamp limitday = Timestamp.valueOf(limitdayTemp.replace("T", " ") + ":00");
+        Timestamp limitday = Timestamp.valueOf(limitdayTemp + " " + limittimeTemp );
+        // 取得した時間は内部的には秒まであるので、こっちでは+00秒しない。
         t.setLimitday(limitday);
 
         // DB更新

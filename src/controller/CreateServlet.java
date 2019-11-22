@@ -44,10 +44,11 @@ public class CreateServlet extends HttpServlet {
             String content = request.getParameter("content");
             t.setContent(content);
 
+            // 日付と時刻を取得してDBのフォーマットに変換
+            // input type="time"で分まで指定してないのでDBに入れるために00秒を追加
             String limitdayTemp = request.getParameter("limitday");
             String limittimeTemp = request.getParameter("limitTime");
             Timestamp limitday = Timestamp.valueOf(limitdayTemp + " " + limittimeTemp + ":00");
-            // Timestamp limitday = Timestamp.valueOf(limitdayTemp.replace("T", " ") + ":00");
             t.setLimitday(limitday);
 
             Boolean completed = Boolean.parseBoolean(request.getParameter("compleated"));
