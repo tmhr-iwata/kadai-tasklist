@@ -55,6 +55,8 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("lmtDay", fmtedDay);
         request.setAttribute("lmtTime", fmtedTime);
+        request.getSession().setAttribute("flush", "更新しました。");
+
 
         // データが存在している場合のみ
         // タスクIDをセッションスコープに登録
