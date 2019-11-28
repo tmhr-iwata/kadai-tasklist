@@ -17,7 +17,27 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllTasks",
-            query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
+            query = "SELECT m FROM Task AS m ORDER BY m.completed , m.limitday DESC"
+            ), // 全件表示の場合は未完了タスクを上に、完了済みは下にして期日降順
+    @NamedQuery(
+            name = "getCompletedTasks",
+            query = "SELECT m FROM Task AS m WHERE m.completed = true ORDER BY m.limitday DESC"
+            ),
+    @NamedQuery(
+            name = "getUncompletedTasks",
+            query = "SELECT m FROM Task AS m WHERE m.completed = false ORDER BY m.limitday DESC"
+            ),
+    @NamedQuery(
+            name = "getTasksCount",
+            query = "SELECT COUNT(m) FROM Task AS m"
+            ),
+    @NamedQuery(
+            name = "getUncompletedTasksCount",
+            query = "SELECT COUNT(m) FROM Task AS m WHERE m.completed = false"
+            ),
+    @NamedQuery(
+            name = "getCompletedTasksCount",
+            query = "SELECT COUNT(m) FROM Task AS m WHERE m.completed = true"
             )
 })
 
@@ -37,7 +57,7 @@ public class Task {
     private Timestamp limitday; // タスクの締め切り日
 
     @Column(name = "completed", nullable = false)
-    private Boolean completed; // 0で未了タスク、1で完了タスク
+    private Boolean completed; // falseで未了タスク、trueで完了タスク
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;

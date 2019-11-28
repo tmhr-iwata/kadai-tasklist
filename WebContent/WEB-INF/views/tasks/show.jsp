@@ -5,23 +5,62 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${task != null}">
-                <h2>id : ${task.title} のタスク詳細</h2>
+                <h2>${task.title} のタスク詳細</h2>
+                <div class="show">
+                    <c:if test="${task.completed == false}">
+                        <h3>このタスクは完了していません！</h3>
+                    </c:if>
+                    <p><a href="<c:url value='/edit?id=${task.id}' /> ">編集</a></p>
 
-                <p>タスク：<c:out value="${task.title}" /></p>
-                <p>詳細：<c:out value="${task.content}" /></p>
-                <p>期日：<fmt:formatDate value="${task.limitday}" pattern="yyyy-MM-dd HH:mm" /></p>
-                <p>作成日時：<fmt:formatDate value="${task.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
-                <p>更新日時：<fmt:formatDate value="${task.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
-                <c:choose>
-                   <c:when test="${task.completed == false}">
-                       <p>タスク未了</p>
-                   </c:when>
-                   <c:otherwise>
-                       <p>タスク完了</p>
-                   </c:otherwise>
-                </c:choose>
-                <p><a href="<c:url value='/edit?id=${task.id}' /> ">編集</a></p>
-
+                    <table class="show">
+                        <tbody>
+                            <tr>
+                                <th>概要</th>
+                                <td><c:out value="${task.title}" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>詳細</th>
+                                <td><c:out value="${task.content}" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>期日</th>
+                                <td><fmt:formatDate value="${task.limitday}" pattern="yyyy-MM-dd HH:mm" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>登録日時</th>
+                                <td><fmt:formatDate value="${task.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>更新日時</th>
+                                <td><fmt:formatDate value="${task.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>ステータス</th>
+                                <td>
+                                    <c:choose>
+                                       <c:when test="${task.completed == false}">
+                                           継続中
+                                       </c:when>
+                                       <c:otherwise>
+                                           タスク完了済み
+                                       </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a href="<c:url value='/edit?id=${task.id}' /> ">編集</a></p>
+                </div>
                 <p><a href="<c:url value='/index' /> ">一覧に戻る</a></p>
             </c:when>
             <c:otherwise>

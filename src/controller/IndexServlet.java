@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,14 +36,49 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<Task> tasks = em.createNamedQuery("getAllTasks", Task.class).getResultList();
-        response.getWriter().append(Integer.valueOf(tasks.size()).toString());
+        int page = 1;
+        try{
+            page = Integer.parseInt(request.getParameter("page"));
+        } catch(NumberFormatException e) {}
+
+        // completed変数の値を参照して
+        // DBから取得する内容を切り替える
+        String completed = request.getParameter("completed");
+        List<Task> tasks = new ArrayList<Task>();
+        if (completed == null || completed.equals("all")){
+            tasks = em.createNamedQuery("getAllTasks", Task.class)
+                        .setFirstResult(10 * (page - 1))
+                        .setMaxResults(10)
+                        .getResultList();
+        } else if (completed.equals("false")) {
+            tasks = em.createNamedQuery("getUncompletedTasks", Task.class)
+                    .setFirstResult(10 * (page - 1))
+                    .setMaxResults(10)
+                    .getResultList();
+        } else if (completed.equals("true")) {
+            tasks = em.createNamedQuery("getCompletedTasks", Task.class)
+                    .setFirstResult(10 * (page - 1))
+                    .setMaxResults(10)
+                    .getResultList();
+        }
+
+        // 件数取得
+        long tasks_count = 0;
+        if (completed == null || completed.equals("all")){
+            tasks_count = (long)em.createNamedQuery("getTasksCount", Long.class).getSingleResult();
+        } else if (completed.equals("false")) {
+            tasks_count = (long)em.createNamedQuery("getUncompletedTasksCount", Long.class).getSingleResult();
+        } else if (completed.equals("true")) {
+            tasks_count = (long)em.createNamedQuery("getCompletedTasksCount", Long.class).getSingleResult();
+        }
 
         em.close();
 
-        // 日時のフォーマットを修正
-
         request.setAttribute("tasks", tasks);
+        request.setAttribute("tasks_count", tasks_count);
+        request.setAttribute("page", page);
+        request.setAttribute("completed", completed);
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request, response);
