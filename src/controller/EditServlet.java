@@ -42,7 +42,7 @@ public class EditServlet extends HttpServlet {
 
         // 期日データをHTMLの型にフォーマットする
         SimpleDateFormat sdfDay = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
         String fmtedDay = null;
         String fmtedTime = null;
         if(t != null){
