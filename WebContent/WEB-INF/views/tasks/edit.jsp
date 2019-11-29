@@ -4,21 +4,21 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${task != null}">
-                <h2>id : ${task.id} タスク編集</h2>
+                <h2>編集 ${task.title}</h2>
 
                 <form method="POST" action="<c:url value="/update" /> ">
                     <c:import url="_form.jsp" />
                 </form>
 
                 <p><a href="<c:url value="/index" /> ">一覧に戻る</a></p>
-                <p><a href="#" onclick="confirmDestroy">タスクの削除</a></p>
+                <p><a href="#" onclick="confirmDestroy();">タスクの削除</a></p>
                 <form method="post" action="<c:url value="/destroy" />"  >
                     <input type="hidden" name="_token" value="${_token}" />
                 </form>
                 <script>
                 function confirmDestroy() {
                     if(confirm("本当に削除してよろしいですか？")){
-                        document.forms[2].submit();
+                        document.forms[1].submit();
                     }
                 }
                 </script>

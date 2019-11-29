@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${errors != null}">
+    <div id="flush_error">
+        入力内容にエラーがあります。<br />
+        <c:forEach var="error" items="${errors}">
+            ・<c:out value="${error}" /><br />
+        </c:forEach>
+    </div>
+</c:if>
 <c:choose>
     <c:when test="${task.id !=null }">
         <label for="title">概要</label><br />
@@ -9,8 +17,8 @@
         <input type="text" name="content" value="${task.content}" />
         <br /><br />
         <label for="limitday">期日</label><br>
-        <input type="date" name="limitday" value="${lmtDay}"  />
-        <input type="time" name="limitTime" value="${lmtTime}" />
+        <input type="date" name="limitday" value="${lmtDay}" required />
+        <input type="time" name="limitTime" value="${lmtTime}" required />
         <br><br>
         <c:choose>
             <c:when test="${task.completed == false}">
@@ -31,8 +39,8 @@
         <input type="text" name="content" value="${task.content}" />
         <br /><br />
         <label for="limitday">期日</label><br>
-        <input type="date" name="limitday" value="${task.limitday}"  />
-        <input type="time" name="limitTime" />
+        <input type="date" name="limitday" value="${task.limitday}" required />
+        <input type="time" name="limitTime" required />
         <br><br>
     </c:otherwise>
 </c:choose>
