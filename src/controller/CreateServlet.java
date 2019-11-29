@@ -70,6 +70,8 @@ public class CreateServlet extends HttpServlet {
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("task", t);
                 request.setAttribute("errors", errors);
+                request.setAttribute("limitday", limitdayTemp);
+                request.setAttribute("limitTime", limittimeTemp);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
                 rd.forward(request, response);

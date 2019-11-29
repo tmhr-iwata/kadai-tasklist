@@ -17,8 +17,8 @@
         <input type="text" name="content" value="${task.content}" />
         <br /><br />
         <label for="limitday">期日</label><br>
-        <input type="date" name="limitday" value="${lmtDay}" required />
-        <input type="time" name="limitTime" value="${lmtTime}" required />
+        <input type="date" name="limitday" value="${limitday}" required />
+        <input type="time" name="limitTime" value="${limitTime}" required />
         <br><br>
         <c:choose>
             <c:when test="${task.completed == false}">
@@ -39,8 +39,8 @@
         <input type="text" name="content" value="${task.content}" />
         <br /><br />
         <label for="limitday">期日</label><br>
-        <input type="date" name="limitday" value="${task.limitday}" required />
-        <input type="time" name="limitTime" required />
+        <input type="date" name="limitday" value="${limitday}" required />
+        <input type="time" name="limitTime" value="${limitTime}" required />
         <br><br>
     </c:otherwise>
 </c:choose>

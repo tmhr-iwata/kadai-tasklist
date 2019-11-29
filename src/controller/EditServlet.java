@@ -53,8 +53,8 @@ public class EditServlet extends HttpServlet {
         // タスク情報とセッションIDをリクエストスコープに登録
         request.setAttribute("task", t);
         request.setAttribute("_token", request.getSession().getId());
-        request.setAttribute("lmtDay", fmtedDay);
-        request.setAttribute("lmtTime", fmtedTime);
+        request.setAttribute("limitday", fmtedDay);
+        request.setAttribute("limitTime", fmtedTime);
 
 
         // データが存在している場合のみ

@@ -4,7 +4,6 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <c:choose>
             <c:if test="${flush != null}">
                 <div id="flush_success">
                     <c:out value="${flush}"></c:out>
@@ -59,6 +58,5 @@
                 </c:forEach>
             </div>
             <p><a href="<c:url value="/new" />">タスクを登録する</a></p>
-    </c:choose>
     </c:param>
 </c:import>
