@@ -50,6 +50,7 @@ public class IndexServlet extends HttpServlet {
                         .setFirstResult(10 * (page - 1))
                         .setMaxResults(10)
                         .getResultList();
+            completed = "all";
         } else if (completed.equals("false")) {
             tasks = em.createNamedQuery("getUncompletedTasks", Task.class)
                     .setFirstResult(10 * (page - 1))
